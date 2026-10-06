@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 15 15% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 15 15% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 43 100% 38%;
+    --primary-foreground: 10 10% 4%;
+
+    --secondary: 20 20% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 20 20% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 30 70% 45%;
+    --accent-foreground: 10 10% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 20 20% 20%;
+    --input: 20 20% 15%;
+    --ring: 43 100% 38%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-valgara-bronze to-valgara-copper bg-clip-text text-transparent;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .star-divider {
+    position: relative;
+  }
+  
+  .star-divider::after {
+    content: "✦";
+    @apply text-valgara-bronze text-2xl absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  
+  /* Professional Fade-Up with Easing Animation */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  .animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Optimized fade-up variant (recommended default) */
+  [data-animate="fade-up"] {
+    opacity: 0;
+    transform: translateY(50px) scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="fade-up"].animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Enhanced fade-only variant */
+  [data-animate="fade"] {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="fade"].animate-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Professional slide-up with easing */
+  [data-animate="slide-up"] {
+    opacity: 0;
+    transform: translateY(60px) scale(0.94);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="slide-up"].animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Smooth slide from right */
+  [data-animate="slide-right"] {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="slide-right"].animate-in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  
+  /* Smooth slide from left */
+  [data-animate="slide-left"] {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="slide-left"].animate-in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  
+  /* Professional scale effect */
+  [data-animate="scale"] {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="scale"].animate-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Elegant blur-to-focus effect */
+  [data-animate="blur"] {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(8px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  [data-animate="blur"].animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  
+  /* Animation delays for staggered effects */
+  .animate-delay-100 { transition-delay: 100ms !important; }
+  .animate-delay-200 { transition-delay: 200ms !important; }
+  .animate-delay-300 { transition-delay: 300ms !important; }
+  .animate-delay-400 { transition-delay: 400ms !important; }
+  .animate-delay-500 { transition-delay: 500ms !important; }
+  .animate-delay-600 { transition-delay: 600ms !important; }
+  .animate-delay-700 { transition-delay: 700ms !important; }
+  .animate-delay-800 { transition-delay: 800ms !important; }
+  
+  /* Performance optimizations */
+  [data-animate] {
+    transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  [data-animate] * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    [data-animate] {
+      transform: translateY(30px) scale(0.97) !important;
+      transition-duration: 0.7s !important;
+    }
+    
+    [data-animate="fade-up"] {
+      transform: translateY(35px) scale(0.97) !important;
+      transition-duration: 0.6s !important;
+    }
+    
+    [data-animate="slide-up"] {
+      transform: translateY(40px) scale(0.96) !important;
+      transition-duration: 0.7s !important;
+    }
+    
+    [data-animate="slide-right"] {
+      transform: translateX(-25px) scale(0.98) !important;
+    }
+    
+    [data-animate="slide-left"] {
+      transform: translateX(25px) scale(0.98) !important;
+    }
+    
+    [data-animate="blur"] {
+      filter: blur(4px) !important;
+      transform: translateY(20px) scale(0.97) !important;
+    }
+  }
+  
+  /* High performance devices */
+  @media (min-width: 1200px) and (min-resolution: 192dpi) {
+    [data-animate] {
+      transition-duration: 1.1s !important;
+    }
+  }
+  
+  /* Accessibility and reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate],
+    [data-animate="fade"],
+    [data-animate="fade-up"],
+    [data-animate="slide-up"],
+    [data-animate="slide-right"],
+    [data-animate="slide-left"],
+    [data-animate="scale"],
+    [data-animate="blur"] {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
+  
+  /* Prevent layout shift during animations */
+  .animate-container {
+    contain: layout style paint;
+  }
+
+  /* Mobile-First Responsive Improvements */
+  /* Improved mobile touch targets */
+  @media (max-width: 768px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Enhanced focus styles for better accessibility */
+  *:focus-visible {
+    outline: 2px solid #B8860B;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Smooth scrolling for the entire document */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced button hover effects */
+  .btn-enhance {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-enhance::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-enhance:hover::before {
+    left: 100%;
+  }
+
+  /* Subtle text selection enhancement */
+  ::selection {
+    background: rgba(184, 134, 11, 0.3);
+    color: #FFFFFF;
+  }
+
+  ::-moz-selection {
+    background: rgba(184, 134, 11, 0.3);
+    color: #FFFFFF;
+  }
+
+  /* Loading spinner utility */
+  .spinner {
+    border: 2px solid rgba(184, 134, 11, 0.3);
+    border-top: 2px solid #B8860B;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Mobile-First Responsive Improvements */
+  /* Improved mobile touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized text scaling */
+  .mobile-text-xs { font-size: 0.75rem; line-height: 1.5; }
+  .mobile-text-sm { font-size: 0.875rem; line-height: 1.6; }
+  .mobile-text-base { font-size: 1rem; line-height: 1.6; }
+  .mobile-text-lg { font-size: 1.125rem; line-height: 1.7; }
+  
+  /* Breathing room utilities */
+  .breathing-space-xs { padding: 1rem; }
+  .breathing-space-sm { padding: 1.5rem; }
+  .breathing-space-md { padding: 2rem; }
+  .breathing-space-lg { padding: 2.5rem; }
+  
+  /* Improved mobile containers */
+  .mobile-container {
+    width: 100%;
+    max-width: none;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  @screen sm {
+    .mobile-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  @screen lg {
+    .mobile-container {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+/* Mobile-specific improvements for better UX */
+@media (max-width: 640px) {
+  /* Ensure minimum touch target sizes */
+  button, .btn, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve tap targets spacing */
+  .space-x-4 > * + * { margin-left: 1rem !important; }
+  .space-y-4 > * + * { margin-top: 1rem !important; }
+  
+  /* Better mobile typography */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Mobile-optimized grid gaps */
+  .grid {
+    gap: 1.5rem;
+  }
+  
+  /* Better mobile scrolling */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+}
